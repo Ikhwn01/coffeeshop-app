@@ -78,8 +78,14 @@ try {
     }
 }
 
-// 5. Handle Failures gracefully
-if (!$pdo) {
+// 5. Handle Failures gracefully & Set SQL Mode
+if ($pdo) {
+    try {
+        $pdo->exec("SET SESSION sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
+    } catch (\Exception $e) {
+        // Silently ignore if provider restricts session variable modification
+    }
+} else {
     if (strpos($connection_error, "Unknown database") !== false) {
         die("
         <div style='font-family: Arial, sans-serif; padding: 30px; max-width: 600px; margin: 50px auto; background: #fff3cd; border: 1px solid #ffeeba; border-radius: 8px;'>

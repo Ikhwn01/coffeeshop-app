@@ -56,7 +56,7 @@ foreach ($dates_map as $dt => $val) {
 }
 
 // 5. Top Selling Products
-$stmtTop = $pdo->prepare("SELECT p.name, c.name as category_name, SUM(oi.quantity) as total_qty, SUM(oi.subtotal) as total_revenue FROM order_items oi JOIN orders o ON oi.order_id = o.id JOIN products p ON oi.product_id = p.id JOIN categories c ON p.category_id = c.id WHERE o.payment_status = 'paid' AND DATE(o.created_at) BETWEEN ? AND ? GROUP BY oi.product_id ORDER BY total_qty DESC LIMIT 5");
+$stmtTop = $pdo->prepare("SELECT p.name, c.name as category_name, SUM(oi.quantity) as total_qty, SUM(oi.subtotal) as total_revenue FROM order_items oi JOIN orders o ON oi.order_id = o.id JOIN products p ON oi.product_id = p.id JOIN categories c ON p.category_id = c.id WHERE o.payment_status = 'paid' AND DATE(o.created_at) BETWEEN ? AND ? GROUP BY oi.product_id, p.name, c.name ORDER BY total_qty DESC LIMIT 5");
 $stmtTop->execute([$start_date, $end_date]);
 $top_products = $stmtTop->fetchAll();
 
