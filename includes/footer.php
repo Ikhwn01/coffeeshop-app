@@ -5,9 +5,9 @@
     <footer>
         <div class="container footer-content">
             <div class="footer-col">
-                <div class="logo" style="margin-bottom: 1rem;">
-                    <i class="fas fa-mug-hot"></i>
-                    <span>WARM BREW</span>
+                <div class="logo" style="margin-bottom: 1rem; display: flex; align-items: center; gap: 10px;">
+                    <img src="assets/img/logo.png" alt="BrewPOS Logo" style="height: 38px; width: 38px; border-radius: 8px; object-fit: cover;">
+                    <span style="font-weight: 800; letter-spacing: 0.5px;">BrewPOS</span>
                 </div>
                 <p style="font-size: 0.9rem; margin-bottom: 1rem;"><?php echo __('footer_about', 'Menyajikan racikan kopi biji pilihan nusantara dengan suasana hangat dan elegan untuk momen spesial Anda.'); ?></p>
                 <div style="display: flex; gap: 1rem; font-size: 1.2rem; color: var(--primary);">

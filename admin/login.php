@@ -250,8 +250,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <div class="login-header">
-            <i class="fas fa-mug-hot"></i>
-            <h2>WARM BREW POS</h2>
+            <img src="../assets/img/logo.png" alt="BrewPOS Logo" style="height: 70px; width: 70px; border-radius: 14px; object-fit: cover; margin-bottom: 0.75rem; box-shadow: 0 4px 15px rgba(200, 138, 72, 0.25);">
+            <h2>BrewPOS</h2>
             <p><?php echo __('admin_login_subtitle', 'Portal Manajemen Admin & Karyawan'); ?></p>
         </div>
 

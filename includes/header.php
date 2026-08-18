@@ -9,7 +9,7 @@ if (session_status() === PHP_SESSION_NONE) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo isset($page_title) ? $page_title . " - Warm Brew Coffee Shop" : "Warm Brew - Artisan Coffee Shop & Lounge"; ?></title>
+    <title><?php echo isset($page_title) ? $page_title . " - BrewPOS Coffee Shop" : "BrewPOS - Artisan Coffee Shop & Lounge"; ?></title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,9 +24,9 @@ if (session_status() === PHP_SESSION_NONE) {
     <!-- Navbar -->
     <nav class="navbar">
         <div class="container nav-wrapper">
-            <a href="index.php" class="logo">
-                <i class="fas fa-mug-hot"></i>
-                <span>WARM BREW</span>
+            <a href="index.php" class="logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+                <img src="assets/img/logo.png" alt="BrewPOS Logo" style="height: 38px; width: 38px; border-radius: 8px; object-fit: cover; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+                <span style="font-weight: 800; letter-spacing: 0.5px;">BrewPOS</span>
             </a>
 
             <div class="nav-links">
@@ -51,10 +51,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     <i class="fas fa-shopping-bag"></i>
                     <span class="cart-badge" id="cartBadge">0</span>
                 </button>
-
-                <a href="admin/login.php" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.85rem;">
-                    <i class="fas fa-user-shield"></i> <?php echo __('nav_staff_login', 'Staf Login'); ?>
-                </a>
             </div>
         </div>
     </nav>
+    <main class="main-content">

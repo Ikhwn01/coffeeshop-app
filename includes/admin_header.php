@@ -21,7 +21,7 @@ $user_role     = $_SESSION['role'] ?? 'karyawan';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo isset($page_title) ? $page_title . " - Admin Warm Brew" : "Dashboard Staf & Keuangan Warm Brew"; ?></title>
+    <title><?php echo isset($page_title) ? $page_title . " - Admin BrewPOS" : "Dashboard Staf & Keuangan BrewPOS"; ?></title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,9 +37,9 @@ $user_role     = $_SESSION['role'] ?? 'karyawan';
 
     <!-- Sidebar (Non-Scrollable, Perfectly Fitted) -->
     <aside class="sidebar">
-        <div class="sidebar-header">
-            <i class="fas fa-mug-hot"></i>
-            <span>WARM POS</span>
+        <div class="sidebar-header" style="display: flex; align-items: center; gap: 10px;">
+            <img src="../assets/img/logo.png" alt="BrewPOS Logo" style="height: 32px; width: 32px; border-radius: 6px; object-fit: cover; box-shadow: 0 2px 6px rgba(0,0,0,0.4);">
+            <span style="font-weight: 800; letter-spacing: 0.5px;">BrewPOS</span>
         </div>
 
         <div class="sidebar-menu">
