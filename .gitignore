@@ -1,0 +1,15 @@
+# Dependencies & System
+node_modules/
+.env
+.env.local
+.DS_Store
+Thumbs.db
+
+# Lock files & temp
+~$*
+*.tmp
+*.log
+
+# Build & Archives
+package_release/
+*.zip
