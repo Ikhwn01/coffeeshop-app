@@ -24,19 +24,28 @@ if (session_status() === PHP_SESSION_NONE) {
     <!-- Navbar -->
     <nav class="navbar">
         <div class="container nav-wrapper">
+            <!-- Brand Logo & Name -->
             <a href="index.php" class="logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
                 <img src="assets/img/logo.png" alt="BrewPOS Logo" style="height: 38px; width: 38px; border-radius: 8px; object-fit: cover; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
                 <span style="font-weight: 800; letter-spacing: 0.5px;">BrewPOS</span>
             </a>
 
+            <!-- Central Nav Links -->
             <div class="nav-links">
                 <a href="index.php" class="nav-link <?php echo (!isset($active_nav) || $active_nav == 'menu') ? 'active' : ''; ?>"><?php echo __('nav_menu', 'Menu & Pesan'); ?></a>
                 <a href="reservation.php" class="nav-link <?php echo (isset($active_nav) && $active_nav == 'reservation') ? 'active' : ''; ?>"><?php echo __('nav_reservation', 'Reservasi Meja'); ?></a>
                 <a href="order_status.php" class="nav-link <?php echo (isset($active_nav) && $active_nav == 'status') ? 'active' : ''; ?>"><?php echo __('nav_order_status', 'Cek Status Pesanan'); ?></a>
-                <a href="admin/login.php" class="nav-link" title="<?php echo __('nav_staff_login', 'Login Staf'); ?>"><i class="fas fa-user-shield" style="margin-right: 4px; font-size: 0.85rem; color: var(--primary);"></i> <?php echo __('nav_staff_login', 'Login Staf'); ?></a>
             </div>
 
-            <div class="nav-actions">
+            <!-- Top Actions: Staff Login Button, Lang Switcher, Table Badge, Cart Button -->
+            <div class="nav-actions" style="display: flex; align-items: center; gap: 0.85rem;">
+                
+                <!-- Staff / Admin Login Button at Top Navbar -->
+                <a href="admin/login.php" class="btn-staff-top" style="display: inline-flex; align-items: center; gap: 6px; background: rgba(212, 154, 89, 0.15); color: var(--primary); border: 1px solid rgba(212, 154, 89, 0.35); padding: 0.4rem 0.95rem; border-radius: 50px; font-size: 0.82rem; font-weight: 700; text-decoration: none; transition: all 0.2s;" onmouseover="this.style.background='var(--primary)'; this.style.color='#ffffff';" onmouseout="this.style.background='rgba(212, 154, 89, 0.15)'; this.style.color='var(--primary)';" title="<?php echo __('nav_staff_login', 'Login Staf'); ?>">
+                    <i class="fas fa-user-shield"></i>
+                    <span><?php echo __('nav_staff_login', 'Login Staf'); ?></span>
+                </a>
+
                 <!-- Language Switcher -->
                 <div class="lang-switcher" style="display: inline-flex; align-items: center; background: rgba(255,255,255,0.06); border-radius: 20px; padding: 2px 6px; border: 1px solid rgba(255,255,255,0.12); font-size: 0.8rem; font-weight: 700; gap: 4px;">
                     <a href="?lang=id" style="color: <?php echo get_current_lang() == 'id' ? '#d49a59' : '#8c95a0'; ?>; text-decoration: none; padding: 2px 6px; border-radius: 12px; <?php echo get_current_lang() == 'id' ? 'background: rgba(212,154,89,0.2); font-weight: 800;' : ''; ?>" title="Bahasa Indonesia">🇮🇩 ID</a>
