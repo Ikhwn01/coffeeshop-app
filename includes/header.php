@@ -33,6 +33,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 <a href="index.php" class="nav-link <?php echo (!isset($active_nav) || $active_nav == 'menu') ? 'active' : ''; ?>"><?php echo __('nav_menu', 'Menu & Pesan'); ?></a>
                 <a href="reservation.php" class="nav-link <?php echo (isset($active_nav) && $active_nav == 'reservation') ? 'active' : ''; ?>"><?php echo __('nav_reservation', 'Reservasi Meja'); ?></a>
                 <a href="order_status.php" class="nav-link <?php echo (isset($active_nav) && $active_nav == 'status') ? 'active' : ''; ?>"><?php echo __('nav_order_status', 'Cek Status Pesanan'); ?></a>
+                <a href="admin/login.php" class="nav-link" title="<?php echo __('nav_staff_login', 'Login Staf'); ?>"><i class="fas fa-user-shield" style="margin-right: 4px; font-size: 0.85rem; color: var(--primary);"></i> <?php echo __('nav_staff_login', 'Login Staf'); ?></a>
             </div>
 
             <div class="nav-actions">

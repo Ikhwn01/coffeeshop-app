@@ -30,8 +30,9 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <div class="container">
-                <p>&copy; <?php echo date('Y'); ?> <?php echo __('footer_copyright', 'Warm Brew Coffee Shop Management System. Hak Cipta Dilindungi.'); ?></p>
+            <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+                <p>&copy; <?php echo date('Y'); ?> <?php echo __('footer_copyright', 'BrewPOS Coffee Shop Management System. Hak Cipta Dilindungi.'); ?></p>
+                <p><a href="admin/login.php" style="color: var(--primary); text-decoration: none; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 5px;"><i class="fas fa-lock" style="font-size: 0.75rem;"></i> <?php echo __('nav_staff_login', 'Login Staf'); ?> / Admin</a></p>
             </div>
         </div>
     </footer>
