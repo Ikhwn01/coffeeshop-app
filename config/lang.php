@@ -11,11 +11,15 @@ if (isset($_GET['lang'])) {
     $selected_lang = strtolower(trim($_GET['lang']));
     if (in_array($selected_lang, $allowed_langs)) {
         $_SESSION['lang'] = $selected_lang;
+        setcookie('brewpos_lang', $selected_lang, time() + (86400 * 365), '/');
     }
 }
 
-// Default language: Indonesian (id) or English (en)
-$current_lang = $_SESSION['lang'] ?? 'id';
+// Default language: English (en) as primary, or Indonesian (id)
+$current_lang = $_GET['lang'] ?? ($_COOKIE['brewpos_lang'] ?? ($_SESSION['lang'] ?? 'en'));
+if (!in_array($current_lang, ['id', 'en'])) {
+    $current_lang = 'en';
+}
 
 $translations = [
     'id' => [

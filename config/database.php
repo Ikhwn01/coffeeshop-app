@@ -117,6 +117,44 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+// 6. Signed Token Auth for Serverless Session Persistence (Prevents sudden logouts on Vercel)
+define('BREWPOS_AUTH_SECRET', 'brewpos_jwt_secret_salt_key_2026');
+
+function create_auth_token($userData) {
+    $payload = json_encode([
+        'id'       => $userData['id'] ?? 1,
+        'username' => $userData['username'] ?? 'admin',
+        'fullname' => $userData['fullname'] ?? 'Administrator',
+        'role'     => $userData['role'] ?? 'admin',
+        'ts'       => time()
+    ]);
+    $b64 = base64_encode($payload);
+    $sig = hash_hmac('sha256', $b64, BREWPOS_AUTH_SECRET);
+    return $b64 . '.' . $sig;
+}
+
+function verify_auth_token($token) {
+    if (empty($token) || strpos($token, '.') === false) return null;
+    list($b64, $sig) = explode('.', $token, 2);
+    $expected = hash_hmac('sha256', $b64, BREWPOS_AUTH_SECRET);
+    if (hash_equals($expected, $sig)) {
+        $json = base64_decode($b64);
+        return json_decode($json, true);
+    }
+    return null;
+}
+
+// Auto-restore session from signed cookie if session was dropped between serverless requests
+if (empty($_SESSION['user_id']) && !empty($_COOKIE['brewpos_auth'])) {
+    $verified = verify_auth_token($_COOKIE['brewpos_auth']);
+    if ($verified && !empty($verified['id'])) {
+        $_SESSION['user_id']  = $verified['id'];
+        $_SESSION['username'] = $verified['username'];
+        $_SESSION['fullname'] = $verified['fullname'];
+        $_SESSION['role']     = $verified['role'];
+    }
+}
+
 // Formatting currency helper
 function format_rupiah($number) {
     return 'Rp ' . number_format($number, 0, ',', '.');

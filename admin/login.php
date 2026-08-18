@@ -77,12 +77,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
 
-        // 4. Finalize Session Login
+        // 4. Finalize Session & Cookie Login
         if ($authenticated && $user_data) {
             $_SESSION['user_id']  = $user_data['id'];
             $_SESSION['username'] = $user_data['username'];
             $_SESSION['fullname'] = $user_data['fullname'];
             $_SESSION['role']     = $user_data['role'];
+
+            // Set signed token in cookie for persistent session across serverless lambdas
+            $token = create_auth_token($user_data);
+            setcookie('brewpos_auth', $token, time() + (86400 * 30), '/');
 
             header("Location: index.php");
             exit;
@@ -97,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo __('admin_login_title', 'Login Staf & Admin'); ?> - Warm Brew Coffee Shop</title>
+    <title><?php echo __('admin_login_title', 'Login Staf & Admin'); ?> - BrewPOS Coffee Shop</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- FontAwesome -->
